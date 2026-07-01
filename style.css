@@ -1,1 +1,115 @@
+/* Configurações Globais e Variáveis de Cor */
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --primary-color: #007bff;
+    --footer-bg: #222;
+    --footer-text: #fff;
+}
 
+/* Classe aplicada via JavaScript para o Modo Escuro */
+body.dark-mode {
+    --bg-color: #1e1e1e;
+    --text-color: #f4f7f6;
+    --card-bg: #2d2d2d;
+    --primary-color: #375a7f;
+    --footer-bg: #111;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header com Flexbox */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+header button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+/* Main Layout com Flexbox */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Cartões de Conteúdo */
+.card {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.question {
+    margin-bottom: 15px;
+}
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.result-message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+}
+
+/* --- RESPONSIVIDADE (Media Query) --- */
+@media (min-width: 768px) {
+    main {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .card {
+        width: 45%; /* Os cards ficam lado a lado em telas maiores */
+    }
+    .form-section {
+        width: 93%; /* O quiz ocupa mais espaço na linha de baixo */
+    }
+}
