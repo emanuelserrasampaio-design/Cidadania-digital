@@ -3,105 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidadania Digital e IA</title>
+    <title>Cidadania Digital e Inteligência Artificial</title>
     <style>
+        /* --- VARIÁVEIS DE COR E CONFIGURAÇÕES GLOBAIS --- */
         :root {
             --bg-color: #f4f7f6;
             --text-color: #333333;
             --card-bg: #ffffff;
             --primary-color: #007bff;
+            --primary-hover: #0056b3;
             --footer-bg: #222222;
             --footer-text: #ffffff;
+            --border-color: #e2e8f0;
         }
+
+        /* Classe de Modo Escuro (Ativada via JavaScript) */
         body.dark-mode {
-            --bg-color: #1e1e1e;
-            --text-color: #f4f7f6;
-            --card-bg: #2d2d2d;
-            --primary-color: #375a7f;
-            --footer-bg: #111111;
+            --bg-color: #121212;
+            --text-color: #e2e8f0;
+            --card-bg: #1e1e1e;
+            --primary-color: #3b82f6;
+            --primary-hover: #60a5fa;
+            --footer-bg: #0a0a0a;
+            --footer-text: #a0aec0;
+            --border-color: #2d3748;
         }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.5;
         }
+
+        /* --- HEADER (FLEXBOX) --- */
         header {
             background-color: var(--primary-color);
-            color: white;
-            padding: 20px;
+            color: #ffffff;
+            padding: 30px 20px;
             text-align: center;
-        }
-        header button {
-            padding: 10px 15px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        main {
-            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        #toggle-dark-mode {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        #toggle-dark-mode:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* --- CONTEÚDO PRINCIPAL (FLEXBOX RESPONSIVO) --- */
+        main {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
+
+        /* Cartões Informativos */
         .card {
             background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            max-width: 600px;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
             width: 100%;
-            box-sizing: border-box;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
+
+        .card h2 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--bg-color);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+
+        .card li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        /* Formulário / Quiz */
+        .quiz-option {
+            display: block;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .quiz-option input {
+            margin-right: 10px;
+            transform: scale(1.1);
+            vertical-align: middle;
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 14px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Mensagens de Feedback */
         .result-message {
-            margin-top: 15px;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 4px;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            display: none; /* Escondido por padrão */
         }
+
+        /* --- RODAPÉ --- */
         footer {
             background-color: var(--footer-bg);
             color: var(--footer-text);
             text-align: center;
-            padding: 15px;
+            padding: 20px;
+            font-size: 0.85rem;
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
+        /* --- RESPONSIVIDADE AVANÇADA (MEDIA QUERIES) --- */
         @media (min-width: 768px) {
-            main { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-            .card { width: 45%; }
-            .form-section { width: 93%; }
+            main {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: stretch;
+            }
+
+            .card {
+                width: 48%; /* Coloca as duas seções informativas lado a lado */
+            }
+
+            .form-section {
+                width: 100%; /* O quiz ocupa a largura total na linha inferior */
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Cidadania Digital &amp; IA</h1>
-        <p>Desmistificando as Deepfakes e a Desinformação</p>
-        <button id="toggle-dark-mode">Alternar Modo Escuro</button>
+        <h1>Cidadania Digital &amp; Inteligência Artificial</h1>
+        <p>O Impacto das Deepfakes e da Desinformação na Sociedade</p>
+        <button id="toggle-dark-mode" aria-label="Alternar entre modo claro e escuro">Alternar Modo Escuro</button>
     </header>
 
     <main>
         <section class="card">
             <h2>O que são Deepfakes?</h2>
-            <p>Deepfakes são mídias geradas por Inteligência Artificial para imitar rostos e vozes reais, frequentemente usadas para espalhar desinformação.</p>
+            <p>Deepfakes são conteúdos em vídeo, áudio ou imagem criados ou alterados através de algoritmos de Inteligência Artificial profunda (Deep Learning). Esta tecnologia consegue replicar rostos e vozes humanas de forma extremamente realista.</p>
+            <p>Embora possua fins legítimos na indústria do cinema, é frequentemente usada para espalhar desinformação, aplicar golpes financeiros e criar notícias falsas difamatórias.</p>
         </section>
 
         <section class="card">
-            <h2>Como identificar?</h2>
-            <p>Fique atento a piscadas de olhos não naturais, falhas na iluminação e áudio dessincronizado. Sempre verifique as fontes das notícias.</p>
+            <h2>Como Identificar Mídias Manipuladas?</h2>
+            <ul>
+                <li><strong>Anomalias Visuais:</strong> Piscar de olhos ausente ou artificial, movimentos rígidos e falhas de iluminação ao redor do rosto.</li>
+                <li><strong>Inconsistência de Áudio:</strong> Voz com aspeto robótico, entonação sem emoção natural ou lábios que não coincidem perfeitamente com o som.</li>
+                <li><strong>Checagem Cruzada:</strong> Nunca partilhe antes de pesquisar o assunto em agências de checagem ou veículos jornalísticos de confiança.</li>
+            </ul>
         </section>
 
         <section class="card form-section">
-            <h2>Quiz da Verdade</h2>
+            <h2>Quiz da Verdade: É Fake ou Fato?</h2>
             <form id="quiz-form">
-                <p>Devemos compartilhar vídeos bombásticos sem checar a fonte?</p>
-                <label><input type="radio" name="q1" value="errado"> Sim, se parece real.</label><br><br>
-                <label><input type="radio" name="q1" value="certo"> Não, IAs criam vídeos falsos idênticos aos reais.</label><br><br>
+                <p style="font-weight: 600; margin-bottom: 15px;">Se receber um vídeo nas redes sociais onde uma figura política diz algo absurdo, qual é a atitude correta?</p>
+                
+                <label class="quiz-option">
+                    <input type="radio" name="quiz-answer" value="errado">
+                    Partilhar imediatamente para alertar os meus amigos e familiares.
+                </label>
+                
+                <label class="quiz-option">
+                    <input type="radio" name="quiz-answer" value="certo">
+                    Duvidar da veracidade, observar detalhes e procurar a notícia em canais oficiais de comunicação.
+                </label>
+
                 <button type="submit">Enviar Resposta</button>
             </form>
             <div id="quiz-result" class="result-message"></div>
@@ -109,39 +258,58 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 - Atividade de Recuperação Prática.</p>
+        <p>&copy; 2026 - Atividade de Recuperação Prática. Componente de Educação Digital e IA. #cidadaniadigital2026</p>
     </footer>
 
     <script>
+        // Aguarda o carregamento do DOM para evitar erros de elementos nulos
         document.addEventListener("DOMContentLoaded", () => {
-            const toggleButton = document.getElementById("toggle-dark-mode");
-            toggleButton.addEventListener("click", () => {
-                document.body.classList.toggle("dark-mode");
-            });
+            
+            // 1. Lógica do Modo Escuro (Dark Mode)
+            const toggleBtn = document.getElementById("toggle-dark-mode");
+            if (toggleBtn) {
+                toggleBtn.addEventListener("click", () => {
+                    document.body.classList.toggle("dark-mode");
+                });
+            }
 
+            // 2. Lógica e Validação do Quiz
             const quizForm = document.getElementById("quiz-form");
             const resultDiv = document.getElementById("quiz-result");
 
-            quizForm.addEventListener("submit", (event) => {
-                event.preventDefault();
-                const resposta = quizForm.elements["q1"].value;
+            if (quizForm && resultDiv) {
+                quizForm.addEventListener("submit", (event) => {
+                    event.preventDefault(); // Impede o recarregamento da página
 
-                if (!resposta) {
-                    resultDiv.textContent = "⚠️ Selecione uma opção!";
-                    resultDiv.style.backgroundColor = "#fff3cd";
-                    return;
-                }
+                    // Captura de rádio desmarcado de forma segura sem quebrar o script
+                    const selectedOption = quizForm.querySelector('input[name="quiz-answer"]:checked');
 
-                if (resposta === "certo") {
-                    resultDiv.textContent = "✅ Correto! A checagem é fundamental.";
-                    resultDiv.style.backgroundColor = "#d4edda";
-                    resultDiv.style.color = "#155724";
-                } else {
-                    resultDiv.textContent = "❌ Incorreto. Vídeos de IA enganam facilmente.";
-                    resultDiv.style.color = "#721c24";
-                    resultDiv.style.backgroundColor = "#f8d7da";
-                }
-            });
+                    // Torna a caixa de feedback visível
+                    resultDiv.style.display = "block";
+
+                    // Validação de erro: se nada foi selecionado
+                    if (!selectedOption) {
+                        resultDiv.textContent = "⚠️ Por favor, selecione uma das opções antes de enviar!";
+                        resultDiv.style.backgroundColor = "#fff3cd";
+                        resultDiv.style.color = "#856404";
+                        resultDiv.style.border = "1px solid #ffeeba";
+                        return;
+                    }
+
+                    // Validação de acerto ou erro
+                    if (selectedOption.value === "certo") {
+                        resultDiv.textContent = "✅ Resposta Correta! A desconfiança e a checagem em fontes seguras são fundamentais na era da IA.";
+                        resultDiv.style.backgroundColor = "#d4edda";
+                        resultDiv.style.color = "#155724";
+                        resultDiv.style.border = "1px solid #c3e6cb";
+                    } else {
+                        resultDiv.textContent = "❌ Resposta Incorreta. Cuidado! Partilhar conteúdos sensacionalistas sem verificar ajuda a espalhar desinformação gerada por IA.";
+                        resultDiv.style.backgroundColor = "#f8d7da";
+                        resultDiv.style.color = "#721c24";
+                        resultDiv.style.border = "1px solid #f5c6cb";
+                    }
+                });
+            }
         });
     </script>
 </body>
