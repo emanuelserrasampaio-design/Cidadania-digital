@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidadania Digital e IA</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Cidadania Digital & Inteligência Artificial</h1>
+        <p>Desmistificando as Deepfakes e a Desinformação</p>
+        <button id="toggle-dark-mode">Alternar Modo Escuro</button>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>O que são Deepfakes?</h2>
+            <p>Deepfakes são vídeos, áudios ou imagens gerados por Inteligência Artificial que imitam a aparência e a voz de pessoas reais de forma muito convincente. Embora a tecnologia tenha usos legítimos no cinema, ela frequentemente é usada para espalhar desinformação e criar notícias falsas.</p>
+        </section>
+
+        <section class="card">
+            <h2>Como identificar a Desinformação?</h2>
+            <ul>
+                <li><strong>Preste atenção aos detalhes:</strong> Piscares de olhos não naturais, falhas na iluminação ou áudio dessincronizado.</li>
+                <li><strong>Verifique a fonte:</strong> O site ou perfil que compartilhou é confiável?</li>
+                <li><strong>Cruze informações:</strong> Procure a mesma notícia em veículos de comunicação conhecidos.</li>
+            </ul>
+        </section>
+
+        <section class="card form-section">
+            <h2>Quiz da Verdade: É Fake ou Fato?</h2>
+            <form id="quiz-form">
+                <div class="question">
+                    <p>1. Se um vídeo de uma pessoa famosa parece real, posso compartilhar sem checar?</p>
+                    <label><input type="radio" name="q1" value="errado"> Sim, se parece real deve ser verdade.</label><br>
+                    <label><input type="radio" name="q1" value="certo"> Não, tecnologias de IA criam vídeos falsos idênticos aos reais.</label>
+                </div>
+                <button type="submit">Enviar Respostas</button>
+            </form>
+            <div id="quiz-result" class="result-message"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Projeto de Educação Digital e IA. Desenvolvido para fins educacionais.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
